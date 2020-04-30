@@ -1,4 +1,4 @@
-module github.com/xiegeo/go-filemutex
+module github.com/xiegeo/filemutex
 
 go 1.13
 
