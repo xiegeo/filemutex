@@ -21,7 +21,11 @@ type FileMutex struct {
 }
 
 func New(filename string) (*FileMutex, error) {
-	fd, err := syscall.Open(filename, syscall.O_CREAT|syscall.O_RDONLY, mkdirPerm)
+	return NewWithPermision(filename, mkdirPerm)
+}
+
+func NewWithPermision(filename string, perm uint32) (*FileMutex, error) {
+	fd, err := syscall.Open(filename, syscall.O_CREAT|syscall.O_RDONLY, perm)
 	if err != nil {
 		return nil, err
 	}

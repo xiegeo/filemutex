@@ -59,6 +59,11 @@ func New(filename string) (*FileMutex, error) {
 	return &FileMutex{fd: fd}, nil
 }
 
+func NewWithPermision(filename string, perm uint32) (*FileMutex, error) {
+	//TODO: handle permission on windows
+	return New(filename)
+}
+
 func (m *FileMutex) TryLock() error {
 	var ol syscall.Overlapped
 	if err := lockFileEx(m.fd, lockfileFailImmediately|lockfileExclusiveLock, 0, 1, 0, &ol); err != nil {
