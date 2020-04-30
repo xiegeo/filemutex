@@ -59,7 +59,7 @@ func New(filename string) (*FileMutex, error) {
 	return &FileMutex{fd: fd}, nil
 }
 
-func NewWithPermision(filename string, perm uint32) (*FileMutex, error) {
+func NewWithPermission(filename string, perm uint32) (*FileMutex, error) {
 	//TODO: handle permission on windows
 	return New(filename)
 }
