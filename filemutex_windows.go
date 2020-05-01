@@ -5,6 +5,7 @@
 package filemutex
 
 import (
+	"os"
 	"syscall"
 	"unsafe"
 )
@@ -59,7 +60,7 @@ func New(filename string) (*FileMutex, error) {
 	return &FileMutex{fd: fd}, nil
 }
 
-func NewWithPermission(filename string, perm uint32) (*FileMutex, error) {
+func NewWithPermission(filename string, perm os.FileMode) (*FileMutex, error) {
 	//TODO: handle permission on windows
 	return New(filename)
 }
