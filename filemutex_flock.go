@@ -7,6 +7,7 @@
 package filemutex
 
 import (
+	"os"
 	"syscall"
 )
 
@@ -24,8 +25,8 @@ func New(filename string) (*FileMutex, error) {
 	return NewWithPermission(filename, mkdirPerm)
 }
 
-func NewWithPermission(filename string, perm uint32) (*FileMutex, error) {
-	fd, err := syscall.Open(filename, syscall.O_CREAT|syscall.O_RDONLY, perm)
+func NewWithPermission(filename string, perm os.FileMode) (*FileMutex, error) {
+	fd, err := syscall.Open(filename, syscall.O_CREAT|syscall.O_RDONLY, uint32(perm))
 	if err != nil {
 		return nil, err
 	}
